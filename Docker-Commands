@@ -16,3 +16,26 @@
     docker start <container_name> or <container_id>
     docker stop <container_id>
   
+7. creating network
+    docker network create network-name
+8. docker checking list
+    docker network ls
+9.setting up mongo and mongo-db
+//for mongo
+    docker run -d 
+    -p27017:27017 
+    --name mongo     
+    --network network-name 
+    -e MONGO_INITDB_ROOT_USERNAME= "USERNAME"
+    -e MONGO_INTDN_ROOT_PASSWORD="PASSWORD"
+    mongo
+
+//for mongo-express
+    docker run -d
+    -p8081:8081
+    --name mongo-express
+    --network network-name
+    -e ME_CONFIG_MONGO_ADMINUSERNAME = "USERNAME"
+    -e ME_CONFIG_MONGODB_ADMINPASSWORD="PASSWORD"
+    -E ME_CONFIG_MONGODB_URL = "mongodb://username:password@mongo:27017"
+        mongo-express
